@@ -6,12 +6,12 @@
   "author": "young.zhou",
   "license": "Apache-2.0",
   "repository": {
-		"type": "gitee",
-		"url": "https://gitee.com/SmallYangY/hjt-mpui.git"
-	},
+    "type": "gitee",
+    "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
+  },
   "scripts": {
     "build:lib": "node build/build-lib.js lib",
-		"build:npm": "node build/build-lib.js npm",
+    "build:npm": "node build/build-lib.js npm",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
@@ -37,6 +37,7 @@
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
+    "shelljs": "^0.8.4",
     "vue": "^2.6.11",
     "vuex": "^3.2.0"
   },

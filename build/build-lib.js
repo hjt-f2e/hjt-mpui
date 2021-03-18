@@ -1,10 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-const exec = require('child_process').exec;
-const argv = process.argv.splice(2)[0];
+// const exec = require('child_process').exec;
+const shell = require('shelljs');
 
-console.log(exec);
+shell.cd('packages');
+shell.exec('npm publish');
+
+return false;
 
 // 定义目录
 const packages = path.join(__dirname, '../src/components');
