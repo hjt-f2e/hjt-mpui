@@ -1,13 +1,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-// const exec = require('child_process').exec;
+const argv = process.argv.splice(2)[0]
 const shell = require('shelljs');
-
-shell.cd('packages');
-shell.exec('npm publish');
-
-return false;
 
 // 定义目录
 const packages = path.join(__dirname, '../src/components');
@@ -77,28 +72,12 @@ packagesLists.reduce((promise, item) => {
 function start() {
     // 任何你期望执行的cmd命令，ls都可以
     let cmdStr1 = 'npm publish --access public';
-    let cmdPath = path.join(__dirname, '..', 'packages');
-    let workerProcess = null;
-    console.log(cmdPath);
     // 子进程名称
-    runExec(cmdStr1, cmdPath, workerProcess);
+    runExec(cmdStr1);
 }
 
-function runExec(cmdStr, cmdPath, workerProcess) {
-    workerProcess = exec(cmdStr, {
-        cwd: cmdPath
-    });
-	// 打印正常的后台可执行程序输出
-	workerProcess.stdout.on('data', function(data) {
-		process.stdout.write('success', data);
-	});
-	// 打印错误的后台可执行程序输出
-	workerProcess.stderr.on('data', function(data) {
-		process.stdout.write('err', data);
-	});
-	// 退出之后的输出
-	workerProcess.on('close', function(code) {
-		console.log('close', code);
-	});
+function runExec(cmdStr) {
+    shell.cd('packages');
+    shell.exec(cmdStr);
 }
 
