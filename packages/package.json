@@ -1,0 +1,22 @@
+{
+    "name": "@hjtui/mpui",
+    "private": false,
+    "version": "1.0.0",
+    "description": "fxt project mini program business ui components",
+    "author": "young.zhou <small_yangy@foxmail.com>",
+    "homepage": "https://github.com/hjt-f2e",
+    "license": "Apache-2.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "gitee",
+        "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "browserslist": [
+        "Android >= 4",
+        "ios >= 8"
+    ]
+}
