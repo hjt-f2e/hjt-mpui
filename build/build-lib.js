@@ -4,6 +4,8 @@ const glob = require('glob');
 const exec = require('child_process').exec;
 const argv = process.argv.splice(2)[0];
 
+console.log(exec);
+
 // 定义目录
 const packages = path.join(__dirname, '../src/components');
 const hjtmpui = path.join(__dirname, '../packages');
@@ -72,7 +74,7 @@ packagesLists.reduce((promise, item) => {
 function start() {
     // 任何你期望执行的cmd命令，ls都可以
     let cmdStr1 = 'npm publish --access public';
-    let cmdPath = path.join(__dirname, '..', 'packages', 'mpui');
+    let cmdPath = path.join(__dirname, '..', 'packages');
     let workerProcess = null;
     console.log(cmdPath);
     // 子进程名称

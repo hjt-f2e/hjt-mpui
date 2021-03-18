@@ -1,7 +1,7 @@
 {
     "name": "@hjtui/mpui",
     "private": false,
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "fxt project mini program business ui components",
     "author": "young.zhou <small_yangy@foxmail.com>",
     "homepage": "https://github.com/hjt-f2e",
