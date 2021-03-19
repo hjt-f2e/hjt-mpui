@@ -6,8 +6,8 @@
   "author": "young.zhou",
   "license": "Apache-2.0",
   "repository": {
-    "type": "gitee",
-    "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
+    "type": "git",
+    "url": "https://github.com/hjt-f2e/hjt-mpui.git"
   },
   "scripts": {
     "cmpdesc": "构建组件包",

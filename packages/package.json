@@ -10,8 +10,8 @@
         "access": "public"
     },
     "repository": {
-        "type": "gitee",
-        "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
+        "type": "git",
+        "url": "https://github.com/hjt-f2e/hjt-mpui.git"
     },
     "dependencies": {},
     "devDependencies": {},
