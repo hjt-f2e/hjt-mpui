@@ -11,9 +11,9 @@
   },
   "scripts": {
     "cmpdesc": "构建组件包",
-    "cmp": "node build/build-lib.js cmp",
+    "cmp": "node build/build-cmp.js cmp",
     "npmdesc": "构建组件包并上传npm",
-    "build:npm": "node build/build-lib.js npm",
+    "build:npm": "node build/build-cmp.js npm",
     "docs:gen": "hjtvuese gen",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
