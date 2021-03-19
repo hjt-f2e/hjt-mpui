@@ -17,7 +17,7 @@ npm i sass sass-loader -D
 
 ```js
 // 引入
-import BusiBanner from '@hjtui/mpui/components/组件文件夹/组件.vue';
+import Busixxxx from '@hjtui/mpui/components/组件文件夹/组件.vue';
 ```
 
 ## 组件介绍
