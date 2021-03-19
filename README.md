@@ -23,3 +23,4 @@ import BusiBanner from '@hjtui/mpui/components/组件文件夹/组件.vue';
 |组件名|组将说明|
 |---|---|
 |BusiBanner|[banner轮播组件](./docs/components/BasiBanner[src.components.BasiBanner].md)|
+|BusiImageLoader|[图片懒加载组件](./docs/components/BusiImageLoader[src.components.BusiImageLoader].md)|
