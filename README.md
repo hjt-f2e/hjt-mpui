@@ -1,13 +1,25 @@
 # 房小团-业务组件库
 
-## 使用方式
+> 常用小程序uniapp业务UI组件
+
+## 安装
 
 ```
 npm i @hjtui/mpui --save
 
-npm i sass -D
-
-npm i sass-loader -D
+# 需要配合scss使用
+npm i sass sass-loader -D
 ```
 
-## BusiBanner广告banner组件
+## 使用
+
+```js
+// 引入
+import BusiBanner from '@hjtui/mpui/components/组件文件夹/组件.vue';
+```
+
+## 组件介绍
+
+|组件名|组将说明|
+|---|---|
+|BusiBanner|[banner轮播组件](./docs/components/BasiBanner[src.components.BasiBanner].md)|

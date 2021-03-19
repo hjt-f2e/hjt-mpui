@@ -5,10 +5,18 @@ const argv = process.argv.splice(2)[0]
 const shell = require('shelljs');
 
 // 定义目录
+// 源components
 const packages = path.join(__dirname, '../src/components');
+// 目标文件夹
 const hjtmpui = path.join(__dirname, '../packages');
-const lib = path.join(hjtmpui, 'lib');
+// 目标components
+const targetDir = path.join(hjtmpui, 'components');
+// 根目录
 const root = path.join(__dirname, '../');
+// 文档源目录
+const docsDir = path.join(__dirname, '../docs');
+// 文档目标目录
+const docsTargetDir = path.join(hjtmpui, 'docs');
 
 var filenames = [];
 var filenamesUpper = [];
@@ -26,10 +34,18 @@ fs.outputFileSync(hjtmpuiPackagePath, JSON.stringify(hjtmpuiPackageData, '', 4))
 // 拷贝README.md文件
 fs.copySync(path.join(root, 'README.md'), path.join(hjtmpui, 'README.md'));
 
-// 先清空packages/lib文件夹
-const exists = fs.existsSync(lib);
+// 清空文档
+const docExists = fs.existsSync(docsTargetDir)
+if (docExists) {
+    fs.removeSync(docsTargetDir);
+}
+// 拷贝文档
+fs.copySync(docsDir, docsTargetDir);
+
+// 先清空packages/targetDir文件夹
+const exists = fs.existsSync(targetDir);
 if (exists) {
-    fs.removeSync(lib);
+    fs.removeSync(targetDir);
 }
 
 // 读取components文件夹，同步组件
@@ -39,7 +55,7 @@ console.log(packagesLists);
 packagesLists.reduce((promise, item) => {
     const comPath = path.join(packages); // components文件夹
     const componentsPath = path.join(comPath, item); // 组件文件
-    fs.copySync(componentsPath, path.join(lib, item)); // 复制到package/lib中
+    fs.copySync(componentsPath, path.join(targetDir, item)); // 复制到package/targetDir中
     console.log(item + '组件同步成功');
     return promise;
 }, Promise.resolve([])).then(() => {
@@ -56,7 +72,7 @@ packagesLists.reduce((promise, item) => {
 //     const coms = fs.readdirSync(comPath);
 //     return coms.reduce((promise, item) => {
 //         const componentsPath = path.join(comPath, item);
-//         fs.copySync(componentsPath, path.join(lib, item));
+//         fs.copySync(componentsPath, path.join(targetDir, item));
 //         console.log(item + '组件同步成功');
 //         return promise;
 //     }, promise);

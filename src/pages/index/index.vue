@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import BusiBanner from "../../components/busi-banner/busi-banner.vue";
+import BusiBanner from "../../components/BusiBanner/BusiBanner.vue";
 export default {
     components: {
         BusiBanner,

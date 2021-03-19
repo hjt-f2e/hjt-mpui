@@ -1,7 +1,7 @@
 {
   "name": "@hjtui/mpui",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "fxt project mini program business ui components",
   "author": "young.zhou",
   "license": "Apache-2.0",
@@ -10,8 +10,9 @@
     "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
   },
   "scripts": {
-    "build:lib": "node build/build-lib.js lib",
+    "build:gen": "node build/build-lib.js cmp",
     "build:npm": "node build/build-lib.js npm",
+    "docs:gen": "hjtvuese gen",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
@@ -53,6 +54,7 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-31420210305001",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-31420210305001",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-31420210305001",
+    "@hjtvuese/cli": "^2.14.25",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-plugin-import": "^1.11.0",

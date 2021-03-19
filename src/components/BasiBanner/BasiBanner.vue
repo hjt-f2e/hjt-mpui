@@ -84,9 +84,33 @@
 </template>
 
 <script>
-    // @group 基础组件
-    import ImageLoader from '../busi-image-loader/busi-image-loader.vue';
+    import ImageLoader from '../BusiImageLoader/BusiImageLoader.vue';
+    /* *desc
+    # 广告banner展示组件
+    
+    > banner图片展示承载组件
 
+    ## 使用方式
+    ```js
+    import BaseBanner from '@hjtui/mpui/components/BaseBanner/BaseBanner.vue';
+    export default {
+        components: {
+            BaseBanner,
+        },
+    }
+    ```
+
+    ```html
+    <BaseBanner
+        source="home"
+        :adList="bannersData.list"
+        :config="bannersData.config"
+        @onTap="handleClick"
+    />
+    ```
+    */
+
+    // @group 基础组件
     export default {
         components: {
             ImageLoader
@@ -100,22 +124,22 @@
                     return [{}];
                 }
             },
-            // 表示是否是recommend-banners, 高度要变化
+            // 高度
             height: {
                 type: Number,
                 default: 280
             },
-            // 轮播圆点
+            // 是否显示轮播圆点
             swiperDots: {
                 type: Boolean,
                 default: true
             },
-            // 首尾衔接
+            // 是否首尾衔接
             swiperCircular: {
                 type: Boolean,
                 default: true
             },
-            // 埋点source字段
+            // 埋点字段ad_source
             source: {
                 type: String,
                 default: ''
@@ -131,8 +155,13 @@
 
         methods: {
             handleClick(url, id, index) {
-                // 支持触发事件逻辑
-                if (!url.includes('navigateTo://none')) this.$emit('onTap', url, id, index);
+                if (!url.includes('navigateTo://none')) {
+                    // 点击触发事件回调(url, id, index)
+                    // @arg url 跳转地址;
+                    // @arg id 广告id;
+                    // @arg index banner index位置;
+                    this.$emit('onTap', url, id, index);
+                }
             }
         }
     };
