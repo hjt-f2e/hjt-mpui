@@ -2,7 +2,9 @@
 
 # 广告banner展示组件
 
-## 引入
+> banner图片展示承载组件
+
+## 使用方式
 ```js
 import BaseBanner from '@hjtui/mpui/components/BaseBanner/BaseBanner.vue';
 export default {
@@ -12,7 +14,6 @@ export default {
 }
 ```
 
-## 使用
 ```html
 <BaseBanner
     source="home"
@@ -28,10 +29,10 @@ export default {
 |Name|Description|Type|Required|Default|
 |---|---|---|---|---|
 |adList|数据源|`Array`|`false`|[{}]|
-|height|表示是否是recommend-banners, 高度要变化|`Number`|`false`|280|
-|swiperDots|轮播圆点|`Boolean`|`false`|true|
-|swiperCircular|首尾衔接|`Boolean`|`false`|true|
-|source|埋点source字段|`String`|`false`|-|
+|height|高度|`Number`|`false`|280|
+|swiperDots|是否显示轮播圆点|`Boolean`|`false`|true|
+|swiperCircular|是否首尾衔接|`Boolean`|`false`|true|
+|source|埋点字段ad_source|`String`|`false`|-|
 |config|配置|`Object`|`false`|{}|
 
 <!-- @hjtvuese:BasiBanner:props:end -->
@@ -42,7 +43,7 @@ export default {
 <!-- @hjtvuese:BasiBanner:events:start -->
 |Event Name|Description|Parameters|
 |---|---|---|
-|onTap|点击触发事件回调(url, id, index)|url 跳转地址; id 广告id; index 位置;|
+|onTap|点击触发事件回调(url, id, index)|url 跳转地址; id 广告id; index banner index位置;|
 
 <!-- @hjtvuese:BasiBanner:events:end -->
 

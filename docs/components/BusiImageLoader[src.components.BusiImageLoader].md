@@ -5,15 +5,15 @@
 
 ## 使用方式
 ```javascript
-import ImageLoader from '@/components/ImageLoader.vue';
+import ImageLoader from '@hjtui/mpui/components/BusiImageLoader/BusiImageLoader.vue';
 export default {
     components: {
-        ImageLoader
+        BusiImageLoader
     }
 };
 ```
 ```html
-<ImageLoader
+<BusiImageLoader
     mode="aspectFill"
     :source="图片地址"
     :styles="{
