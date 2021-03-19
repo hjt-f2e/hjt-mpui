@@ -15,6 +15,8 @@
     "npmdesc": "构建组件包并上传npm",
     "build:npm": "node build/build-cmp.js npm",
     "docs:gen": "hjtvuese gen",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
