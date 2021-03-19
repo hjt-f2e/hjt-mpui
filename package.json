@@ -1,7 +1,7 @@
 {
   "name": "@hjtui/mpui",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "fxt project mini program business ui components",
   "author": "young.zhou",
   "license": "Apache-2.0",

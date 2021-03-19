@@ -2,7 +2,7 @@
 
 > 常用小程序uniapp业务UI组件
 
-[中文文档](https://gitee.com/SmallYangY/hjt-mpui)
+[中文文档](https://github.com/hjt-f2e/hjt-mpui)
 
 ## 安装
 
@@ -17,7 +17,7 @@ npm i sass sass-loader -D
 
 ```js
 // 引入
-import BusiBanner from '@hjtui/mpui/components/组件文件夹/组件.vue';
+import Busixxxx from '@hjtui/mpui/components/组件文件夹/组件.vue';
 ```
 
 ## 组件介绍
