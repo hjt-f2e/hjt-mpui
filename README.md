@@ -2,7 +2,7 @@
 
 > 常用小程序uniapp业务UI组件
 
-[中文文档](https://gitee.com/SmallYangY/hjt-mpui)
+[中文文档](https://github.com/hjt-f2e/hjt-mpui)
 
 ## 安装
 
