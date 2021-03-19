@@ -1,0 +1,27 @@
+{
+  "projectName": "@hjtui/mpui",
+  "projectOwner": "young.zhou",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "smallyangy",
+      "name": "young.zhou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24288065?s=460&u=dd64aa4f5eea0a27fcbdbaa3cbd95e81ec98a46e&v=4",
+      "profile": "",
+      "contributions": [
+        "code",
+        "test",
+        "doc",
+        "example"
+      ]
+    },
+  ],
+  "contributorsPerLine": 7
+}
