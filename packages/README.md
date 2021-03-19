@@ -1,8 +1,8 @@
 # 房小团-业务组件库
 
-[中文文档](https://gitee.com/SmallYangY/hjt-mpui)
-
 > 常用小程序uniapp业务UI组件
+
+[中文文档](https://gitee.com/SmallYangY/hjt-mpui)
 
 ## 安装
 

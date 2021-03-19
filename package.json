@@ -10,7 +10,9 @@
     "url": "https://gitee.com/SmallYangY/hjt-mpui.git"
   },
   "scripts": {
-    "build:gen": "node build/build-lib.js cmp",
+    "cmpdesc": "构建组件包",
+    "cmp": "node build/build-lib.js cmp",
+    "npmdesc": "构建组件包并上传npm",
     "build:npm": "node build/build-lib.js npm",
     "docs:gen": "hjtvuese gen",
     "serve": "npm run dev:h5",
