@@ -40,7 +40,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/24288065?s=460&u=dd64aa4f5eea0a27fcbdbaa3cbd95e81ec98a46e&v=4?s=100" width="100px;" alt=""/><br /><sub><b>young.zhou</b></sub><br /><a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Code">💻</a> <a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Tests">⚠️</a> <a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Documentation">📖</a> <a href="#example-smallyangy" title="Examples">💡</a></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/24288065?s=60&v=4?s=100" width="100px;" alt=""/><br /><sub><b>young.zhou</b></sub><br /><a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Code">💻</a> <a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Tests">⚠️</a> <a href="https://github.com/young.zhou/@hjtui/mpui/commits?author=smallyangy" title="Documentation">📖</a> <a href="#example-smallyangy" title="Examples">💡</a></td>
   </tr>
 </table>
 
