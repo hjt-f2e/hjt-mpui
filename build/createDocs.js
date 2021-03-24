@@ -7,8 +7,7 @@ const {
 } = require('./dirName');
 
 function createDocs() {
-    // TODO:先生成文档
-
+    // 生成文档
     shell.exec('npm run docs:gen');
     
     // 清空已有文档

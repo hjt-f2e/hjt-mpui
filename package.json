@@ -10,9 +10,7 @@
     "url": "https://github.com/hjt-f2e/hjt-mpui.git"
   },
   "scripts": {
-    "cmpdesc": "构建组件包",
     "cmp": "node build/build-cmp.js cmp",
-    "npmdesc": "构建组件包并上传npm",
     "build:npm": "node build/build-cmp.js npm",
     "docs:gen": "hjtvuese gen",
     "contributors:add": "all-contributors add",
