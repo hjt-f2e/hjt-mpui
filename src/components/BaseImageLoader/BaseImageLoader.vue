@@ -30,15 +30,15 @@
 
     ## 使用方式
     ```javascript
-    import ImageLoader from '@hjtui/mpui/components/BusiImageLoader/BusiImageLoader.vue';
+    import BaseImageLoader from '@hjtui/mpui/components/BaseImageLoader/BaseImageLoader.vue';
     export default {
         components: {
-            BusiImageLoader
+            BaseImageLoader
         }
     };
     ```
     ```html
-    <BusiImageLoader
+    <BaseImageLoader
         mode="aspectFill"
         :source="图片地址"
         :styles="{
@@ -49,8 +49,9 @@
     ```
      */
 
-    // @group 基础组件
+    // @group 基础UI组件
     export default {
+        name: 'BaseImageLoader',
         props: {
             // 资源路径
             source: {

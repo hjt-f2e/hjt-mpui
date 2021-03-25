@@ -84,7 +84,7 @@
 </template>
 
 <script>
-    import ImageLoader from '../BusiImageLoader/BusiImageLoader.vue';
+    import ImageLoader from '../BaseImageLoader/BaseImageLoader.vue';
     /* *desc
     # 广告banner展示组件
     
@@ -92,16 +92,16 @@
 
     ## 使用方式
     ```js
-    import BaseBanner from '@hjtui/mpui/components/BaseBanner/BaseBanner.vue';
+    import BusiBanner from '@hjtui/mpui/components/BusiBanner/BusiBanner.vue';
     export default {
         components: {
-            BaseBanner,
+            BusiBanner,
         },
     }
     ```
 
     ```html
-    <BaseBanner
+    <BusiBanner
         source="home"
         :adList="bannersData.list"
         :config="bannersData.config"
@@ -110,8 +110,9 @@
     ```
     */
 
-    // @group 基础组件
+    // @group 基础业务组件
     export default {
+        name: 'BusiBanner',
         components: {
             ImageLoader
         },

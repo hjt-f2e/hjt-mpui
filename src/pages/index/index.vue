@@ -2,7 +2,7 @@
     <view>
         <view class="header-title">房小团-UI组件</view>
         <view class="cmp-wrapper">
-            <view class="title">广告banner轮播组件</view>
+            <view class="title">广告banner轮播基础业务组件</view>
             <view style="padding: 0 32rpx;">
             	<BusiBanner
 					source="home"
@@ -12,14 +12,31 @@
 				></BusiBanner>
             </view>
         </view>
+        <view class="cmp-wrapper">
+            <view class="title">圆形进度基础UI组件</view>
+            <view style="padding: 0 32rpx">
+            	<BaseCircleProgress
+                    title="标题"
+                    :value="201"
+                    :max="300"
+                    valueColor="#ccc"
+                    waveColor="#FFD34A"
+                    titleColor="#666"
+                    size="150rpx"
+                    bgColor="#efefef"
+                ></BaseCircleProgress>
+            </view>
+        </view>
     </view>
 </template>
 
 <script>
 import BusiBanner from "../../components/BusiBanner/BusiBanner.vue";
+import BaseCircleProgress from '../../components/BaseCircleProgress/BaseCircleProgress.vue'
 export default {
     components: {
         BusiBanner,
+        BaseCircleProgress,
     },
     data() {
         return {
