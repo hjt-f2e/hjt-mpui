@@ -27,7 +27,7 @@ import Busixxxx from '@hjtui/mpui/components/组件文件夹/组件.vue';
 
 |组件名|组将说明|
 |---|---|
-|BusiBanner|[banner轮播业务组件](./docs/components/BasiBanner[src.components.BasiBanner].md)|
+|BusiBanner|[banner轮播业务组件](./docs/components/BusiBanner[src.components.BusiBanner].md)|
 |BaseImageLoader|[图片懒加载基础组件](./docs/components/BaseImageLoader[src.components.BaseImageLoader].md)|
 |BaseCircleProgress|[圆形波浪进度基础组件](./docs/components/BaseCircleProgress[src.components.BaseCircleProgress].md)|
 
