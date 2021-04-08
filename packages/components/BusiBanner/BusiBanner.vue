@@ -3,7 +3,7 @@
         <!-- 多张 -->
         <view
             v-if="adList.length > 1"
-            class="init__banner-block"
+            class="banner-swiper-wrapper"
             :style="{height:height+'rpx'}"
         >
             <swiper
@@ -12,13 +12,17 @@
                 :style="{
                     height: height + 'rpx'
                 }"
+                :current="swiperCurrent"
                 :circular="swiperCircular"
-                :indicator-dots="adList.length > 1 && swiperDots"
+                :indicator-dots="showDot && dotStyle === 'default'"
                 autoplay="true"
                 :interval="config.rotation_duration || 4000"
                 indicator-color="rgba(255,255,255,.4)"
                 indicator-active-color="#ffffff"
-                duration="300"
+                :duration="duration"
+                @change="changeSwiper"
+                @transition="transitionSwiper"
+                @animationfinish="animationfinish"
             >
                 <block
                     v-for="(item, index) in adList"
@@ -48,11 +52,29 @@
                     </swiper-item>
                 </block>
             </swiper>
+            <!-- 轮播指示点样式修改 -->
+            <view
+                v-if="showDot && dotStyle === 'style1'"
+                class="dots"
+            >
+                <view
+                    v-for="(item,index) in adList.length"
+                    :key="item"
+                    :class="{
+                        'dot': true,
+                        'dot-active': index === swiperCurrent
+                    }"
+                    :style="{
+                        '--duration': Math.round(config.rotation_duration / 1000) + 's',
+                        '--width': activeDotWidth + 'rpx',
+                    }"
+                />
+            </view>
         </view>
         <!-- 只有一张图片 -->
         <view
             v-else-if="adList.length === 1"
-            class="init__banner-block relative"
+            class="banner-swiper-wrapper"
             :style="{height: height + 'rpx'}"
         >
             <view
@@ -91,6 +113,8 @@
     > banner图片展示承载组件
 
     ## 使用方式
+
+    引入
     ```js
     import BusiBanner from '@hjtui/mpui/components/BusiBanner/BusiBanner.vue';
     export default {
@@ -100,13 +124,27 @@
     }
     ```
 
+    使用
     ```html
-    <BusiBanner
-        source="home"
-        :adList="bannersData.list"
-        :config="bannersData.config"
-        @onTap="handleClick"
-    />
+    <view style="padding: 0 32rpx;">
+        <BusiBanner
+            source="home"
+            :adData="adData"
+            :showDot="true"
+            dotStyle="style1"
+            @onTap="handleClick"
+        />
+    </view>
+    ```
+    ```js
+    export default {
+        methods: {
+            handleClick(url, id, index) {
+                // 跳转逻辑
+                jumpTo(url);
+            }
+        }
+    }
     ```
     */
 
@@ -118,11 +156,14 @@
         },
 
         props: {
-            // 数据源
-            adList: {
-                type: Array,
+            // 广告数据
+            adData: {
+                type: Object,
                 default() {
-                    return [{}];
+                    return {
+                        config: {},
+                        list: []
+                    };
                 }
             },
             // 高度
@@ -131,49 +172,89 @@
                 default: 280
             },
             // 是否显示轮播圆点
-            swiperDots: {
+            showDot: {
                 type: Boolean,
                 default: true
+            },
+            // 轮播圆点样式 ```[default, style1]```
+            dotStyle: {
+                type: String,
+                default: 'default'
             },
             // 是否首尾衔接
             swiperCircular: {
                 type: Boolean,
                 default: true
             },
+            // 切换动画时长ms
+            duration: {
+                type: Number,
+                default: 300
+            },
             // 埋点字段ad_source
             source: {
                 type: String,
                 default: ''
             },
-            // 配置
-            config: {
-                type: Object,
-                default() {
-                    return {};
-                }
-            }
+        },
+
+        watch: {
+            adData: {
+                handler(to) {
+                    this.adList = to.list;
+                    this.config = to.config;
+                },
+                immediate: true,
+            },
+        },
+
+        data() {
+            return {
+                swiperCurrent: 0,
+                adList: this.adData.list,
+                config: this.adData.config,
+                activeDotWidth: 0,
+            };
+        },
+
+        mounted() {
+            this.activeDotWidth = 28;
         },
 
         methods: {
             handleClick(url, id, index) {
                 if (!url.includes('navigateTo://none')) {
                     // 点击触发事件回调(url, id, index)
-                    // @arg url 跳转地址;
-                    // @arg id 广告id;
-                    // @arg index banner index位置;
+                    // @arg url： 跳转地址;
+                    // @arg id： 广告id;
+                    // @arg index： banner index位置;
                     this.$emit('onTap', url, id, index);
                 }
+            },
+            // 滑动的问题
+            changeSwiper(e) {
+                const { current } = e.detail;
+                this.swiperCurrent = current;
+            },
+            // 动画结束
+            animationfinish() {
+                this.activeDotWidth = 28;
+            },
+            // 左右划触发
+            transitionSwiper(e) {
+                this.activeDotWidth = 0;
             }
         }
     };
 </script>
 
-<style lang="scss">
-    .init__banner-block{
+<style lang="scss" scoped>
+    .banner-swiper-wrapper{
         height: 280rpx;
         background: #fff;
         overflow: hidden;
         border-radius: 8rpx;
+        position: relative;
         .swiper {
             height: 280rpx;
             border-radius: 8rpx;
@@ -183,7 +264,7 @@
             border-radius: 8rpx;
         }
     }
-    .init__banner-block .top-banner-image{
+    .banner-swiper-wrapper .top-banner-image{
         height: 100%;
         border-radius: 8rpx;
     }
@@ -207,4 +288,43 @@
         border-radius: 1rpx;
         opacity: 0.4;
     }
+    .dots {
+    position: absolute;
+    bottom: 20rpx;
+    left: 24rpx;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    .dot {
+        flex: none;
+        width: 12rpx;
+        height: 12rpx;
+        background:rgba(255,255,255,.7);
+        border-radius: 50%;
+        margin-right: 8rpx;
+        transition: width .3s;
+        position: relative;
+        overflow: hidden;
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: white;
+            width: 0rpx;
+            height: 12rpx;
+        }
+    }
+    .dot-active {
+        width: 28rpx;
+        height: 12rpx;
+        border-radius: 12rpx;
+        background: rgba(255, 255, 255, .8);
+        &:after {
+            content: "";
+            width: var(--width);
+            transition: width var(--duration) linear;
+        }
+    }
+}
 </style>

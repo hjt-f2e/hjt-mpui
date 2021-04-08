@@ -6,13 +6,14 @@
             <view style="padding: 0 32rpx;">
             	<BusiBanner
 					source="home"
-					:adList="adData.list"
-					:config="adData.config"
+                    :adData="adData"
+                    :showDot="true"
+                    dotStyle="style1"
 					@onTap="handleClick"
 				></BusiBanner>
             </view>
         </view>
-        <view class="cmp-wrapper">
+        <!-- <view class="cmp-wrapper">
             <view class="title">圆形进度基础UI组件</view>
             <view style="padding: 0 32rpx">
             	<BaseCircleProgress
@@ -26,7 +27,7 @@
                     bgColor="#efefef"
                 ></BaseCircleProgress>
             </view>
-        </view>
+        </view> -->
     </view>
 </template>
 
@@ -44,7 +45,7 @@ export default {
             adData: {
                 config: {
                     rotation_num: 6,
-                    rotation_duration: 3000,
+                    rotation_duration: 5000,
                 },
                 list: [
                     {
@@ -61,6 +62,26 @@ export default {
                         text: "",
                         image:
                             "https://imgcdn.huanjutang.com/file/2021/03/12/2c4272485e101135e294de77b4c21a2c.jpg",
+                        sub_title: "",
+                        title: "",
+                        image1: "",
+                        image2: "",
+                        style_id: 2,
+                    },
+                    {
+                        project_id: 31084,
+                        project_name: "香城云庭",
+                        sort: 0,
+                        ad_number: 8133,
+                        ad_nike_name: "香城云庭3月",
+                        ad_code: "cd-home-top-banner",
+                        url:
+                            "navigateTo://pages/lotteryDetail?project_id=31084",
+                        url_remark:
+                            '{"linkType":"adQueryProject","linkTypeText":"香城云庭"}',
+                        text: "",
+                        image:
+                            "https://imgcdn.huanjutang.com/file/2021/03/17/99350f3a18eb8a6b1d0f574bd1f19fac.jpg",
                         sub_title: "",
                         title: "",
                         image1: "",
