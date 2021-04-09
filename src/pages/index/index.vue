@@ -5,15 +5,16 @@
             <view class="title">广告banner轮播基础业务组件</view>
             <view style="padding: 0 32rpx;">
             	<BusiBanner
-					source="home"
-                    :adData="adData"
+					reportSource="home"
+                    reportType="banner"
+                    :adData="bannerData"
                     :showDot="true"
                     dotStyle="style1"
-					@onTap="handleClick"
+					@click="handleClick"
 				></BusiBanner>
             </view>
         </view>
-        <!-- <view class="cmp-wrapper">
+        <view class="cmp-wrapper">
             <view class="title">圆形进度基础UI组件</view>
             <view style="padding: 0 32rpx">
             	<BaseCircleProgress
@@ -27,22 +28,33 @@
                     bgColor="#efefef"
                 ></BaseCircleProgress>
             </view>
-        </view> -->
+        </view>
+        <view class="cmp-wrapper">
+            <view class="title">开屏弹窗业务组件</view>
+            <BusiPopupImg
+                :visible.sync="showIndexAd"
+                :adData="popupImg"
+                :reportSource="home"
+                @click="handleClick"
+            ></BusiPopupImg>
+        </view>
     </view>
 </template>
 
 <script>
 import BusiBanner from "../../components/BusiBanner/BusiBanner.vue";
 import BaseCircleProgress from '../../components/BaseCircleProgress/BaseCircleProgress.vue'
+import BusiPopupImg from '../../components/BusiPopupImg/BusiPopupImg.vue'
 export default {
     components: {
         BusiBanner,
         BaseCircleProgress,
+        BusiPopupImg,
     },
     data() {
         return {
             title: "Hello",
-            adData: {
+            bannerData: {
                 config: {
                     rotation_num: 6,
                     rotation_duration: 5000,
@@ -110,12 +122,40 @@ export default {
                     },
                 ],
             },
+            popupImg: {
+                config: {
+                    max_exposure: 999,
+                    stay_duration: 5
+                },
+                list: [
+                    {
+                        ad_code: "cd-home--mask",
+                        ad_nike_name: "新批次10",
+                        ad_number: 4426,
+                        image: "https://imgcdn.huanjutang.com/file/2021/04/08/7c29b9546a9ea79e73df1483c38f2609.jpeg",
+                        image1: "",
+                        image2: "",
+                        project_id: 9,
+                        project_name: "成都融创文旅城",
+                        sort: 0,
+                        style_id: 2,
+                        sub_title: "",
+                        text: "",
+                        title: "",
+                        url: "navigateTo://pages/lotteryDetail?project_id=9",
+                        url_remark: '{"linkType":"adQueryProject","linkTypeText":"成都融创文旅城"}',
+                    }
+                ]
+            },
+            showIndexAd: false,
         };
     },
-    onLoad() {},
+    onLoad() {
+        this.showIndexAd = true;
+    },
     methods: {
-		handleClick(url, id, index) {
-			console.log('tap', url, id, index);
+		handleClick(item, index) {
+			console.log('click', item, index);
 		}
 	},
 };

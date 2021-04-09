@@ -33,13 +33,13 @@
                         class="swiperItem"
                         data-custom-event-name="AD_click"
                         data-custom-prop-ad_medium="小程序"
-                        data-custom-prop-ad_type="banner"
-                        :data-custom-prop-ad_source="source"
+                        :data-custom-prop-ad_type="reportType"
+                        :data-custom-prop-ad_source="reportSource"
                         :data-custom-prop-ad_code="item.ad_code"
                         :data-custom-prop-ad_nike_name="item.ad_nike_name"
                         :data-custom-prop-ad_number="item.ad_number"
                         :data-custom-prop-ad_keyword="item.project_name"
-                        @click="handleClick(item.url, item.ad_number, index)"
+                        @click="handleClick(item, index)"
                     >
                         <ImageLoader
                             :source="item.image"
@@ -86,13 +86,13 @@
                     class="top-banner-image"
                     data-custom-event-name="AD_click"
                     data-custom-prop-ad_medium="小程序"
-                    data-custom-prop-ad_type="banner"
-                    :data-custom-prop-ad_source="source"
+                    :data-custom-prop-ad_type="reportType"
+                    :data-custom-prop-ad_source="reportSource"
                     :data-custom-prop-ad_code="adList[0].ad_code"
                     :data-custom-prop-ad_nike_name="adList[0].ad_nike_name"
                     :data-custom-prop-ad_number="adList[0].ad_number"
                     :data-custom-prop-ad_keyword="adList[0].project_name"
-                    @click="handleClick(adList[0].url ,adList[0].ad_number, 0)"
+                    @click="handleClick(adList[0], 0)"
                 >
                     <ImageLoader
                         :source="adList[0].image"
@@ -128,20 +128,21 @@
     ```html
     <view style="padding: 0 32rpx;">
         <BusiBanner
-            source="home"
+            reportSource="home"
+            reportType="banner"
             :adData="adData"
             :showDot="true"
             dotStyle="style1"
-            @onTap="handleClick"
+            @click="handleClick"
         />
     </view>
     ```
     ```js
     export default {
         methods: {
-            handleClick(url, id, index) {
-                // 跳转逻辑
-                jumpTo(url);
+            handleClick(item, index) {
+                // 跳转逻辑，支持协议跳转
+                jumpTo(item.url);
             }
         }
     }
@@ -166,7 +167,7 @@
                     };
                 }
             },
-            // 高度
+            // 高度(单位：rpx)
             height: {
                 type: Number,
                 default: 280
@@ -191,8 +192,13 @@
                 type: Number,
                 default: 300
             },
-            // 埋点字段ad_source
-            source: {
+            // 埋点上报字段ad_type
+            reportType: {
+                type: String,
+                default: 'banner'
+            },
+            // 埋点上报字段ad_source
+            reportSource: {
                 type: String,
                 default: ''
             },
@@ -222,13 +228,12 @@
         },
 
         methods: {
-            handleClick(url, id, index) {
-                if (!url.includes('navigateTo://none')) {
-                    // 点击触发事件回调(url, id, index)
-                    // @arg url： 跳转地址;
-                    // @arg id： 广告id;
-                    // @arg index： banner index位置;
-                    this.$emit('onTap', url, id, index);
+            handleClick(item, index) {
+                if (!item.url.includes('navigateTo://none')) {
+                    // 点击触发事件回调(item, index)
+                    // @arg item: 单个广告数据;
+                    // @arg index: banner index位置;
+                    this.$emit('click', item, index);
                 }
             },
             // 滑动的问题
@@ -301,7 +306,7 @@
         height: 12rpx;
         background:rgba(255,255,255,.7);
         border-radius: 50%;
-        margin-right: 8rpx;
+        margin-left: 8rpx;
         transition: width .3s;
         position: relative;
         overflow: hidden;

@@ -69,6 +69,7 @@
 
     // @group 基础UI组件
     export default {
+        name: 'BaseCircleProgress',
         props: {
             // 标题
             title: {
@@ -137,7 +138,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $length: var(--size);
 %bgColor {
     background: linear-gradient(180deg, var(--wave-color) 0%, rgba(255, 150, 95, 0.13) 100%);

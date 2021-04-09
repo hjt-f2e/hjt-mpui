@@ -20,20 +20,21 @@ export default {
 ```html
 <view style="padding: 0 32rpx;">
     <BusiBanner
-        source="home"
+        reportSource="home"
+        reportType="banner"
         :adData="adData"
         :showDot="true"
         dotStyle="style1"
-        @onTap="handleClick"
+        @click="handleClick"
     />
 </view>
 ```
 ```js
 export default {
     methods: {
-        handleClick(url, id, index) {
-            // 跳转逻辑
-            jumpTo(url);
+        handleClick(item, index) {
+            // 跳转逻辑，支持协议跳转
+            jumpTo(item.url);
         }
     }
 }
@@ -45,12 +46,13 @@ export default {
 |Name|Description|Type|Required|Default|
 |---|---|---|---|---|
 |adData|广告数据|`Object`|`false`|{"config":{},"list":[]}|
-|height|高度|`Number`|`false`|280|
+|height|高度(单位：rpx)|`Number`|`false`|280|
 |showDot|是否显示轮播圆点|`Boolean`|`false`|true|
 |dotStyle|轮播圆点样式 ```[default, style1]```|`String`|`false`|default|
 |swiperCircular|是否首尾衔接|`Boolean`|`false`|true|
 |duration|切换动画时长ms|`Number`|`false`|300|
-|source|埋点字段ad_source|`String`|`false`|-|
+|reportType|埋点上报字段ad_type|`String`|`false`|banner|
+|reportSource|埋点上报字段ad_source|`String`|`false`|-|
 
 <!-- @hjtvuese:BusiBanner:props:end -->
 
@@ -60,7 +62,7 @@ export default {
 <!-- @hjtvuese:BusiBanner:events:start -->
 |Event Name|Description|Parameters|
 |---|---|---|
-|onTap|点击触发事件回调(url, id, index)|url： 跳转地址; id： 广告id; index： banner index位置;|
+|click|点击触发事件回调(item, index)|item: 单个广告数据; index: banner index位置;|
 
 <!-- @hjtvuese:BusiBanner:events:end -->
 
