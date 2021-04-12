@@ -1,10 +1,12 @@
 <template>
-    <view>
+    <view
+        class="busi-banner"
+        :class="customClass ? customClass : ''"
+    >
         <!-- 多张 -->
         <view
             v-if="adList.length > 1"
             class="banner-swiper-wrapper"
-            :class="customClass ? customClass : ''"
             :style="{height:height+'rpx'}"
         >
             <swiper
@@ -259,83 +261,85 @@
     };
 </script>
 
-<style lang="scss" scoped>
-    .banner-swiper-wrapper{
-        height: 280rpx;
-        background: #fff;
-        overflow: hidden;
-        border-radius: 8rpx;
-        position: relative;
-        .swiper {
+<style lang="scss">
+    .busi-banner {
+        .banner-swiper-wrapper{
+            height: 280rpx;
+            background: #fff;
+            overflow: hidden;
+            border-radius: 8rpx;
+            position: relative;
+            .swiper {
+                height: 280rpx;
+                border-radius: 8rpx;
+            }
+            .swiperItem {
+                position: relative;
+                border-radius: 8rpx;
+            }
+        }
+        .banner-swiper-wrapper .top-banner-image{
+            height: 100%;
+            border-radius: 8rpx;
+        }
+        .slide-image {
+            width: 100%;
+            max-width: 100%;
             height: 280rpx;
             border-radius: 8rpx;
         }
-        .swiperItem {
-            position: relative;
-            border-radius: 8rpx;
-        }
-    }
-    .banner-swiper-wrapper .top-banner-image{
-        height: 100%;
-        border-radius: 8rpx;
-    }
-     .slide-image {
-        width: 100%;
-        max-width: 100%;
-        height: 280rpx;
-        border-radius: 8rpx;
-    }
-    .advert{
-        font-size: 18rpx;
-        line-height: 26rpx;
-        text-align: center;
-        background: rgba(0,0,0,.3);
-        width: 50rpx;
-        height: 26rpx;
-        position: absolute;
-        right: 12rpx;
-        bottom: 12rpx;
-        z-index: 222;
-        border-radius: 1rpx;
-        opacity: 0.4;
-    }
-    .dots {
-    position: absolute;
-    bottom: 20rpx;
-    left: 24rpx;
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    .dot {
-        flex: none;
-        width: 12rpx;
-        height: 12rpx;
-        background:rgba(255,255,255,.7);
-        border-radius: 50%;
-        margin-left: 8rpx;
-        transition: width .3s;
-        position: relative;
-        overflow: hidden;
-        &:after {
-            content: "";
+        .advert{
+            font-size: 18rpx;
+            line-height: 26rpx;
+            text-align: center;
+            background: rgba(0,0,0,.3);
+            width: 50rpx;
+            height: 26rpx;
             position: absolute;
-            left: 0;
-            top: 0;
-            background: white;
-            width: 0rpx;
-            height: 12rpx;
+            right: 12rpx;
+            bottom: 12rpx;
+            z-index: 222;
+            border-radius: 1rpx;
+            opacity: 0.4;
+        }
+        .dots {
+            position: absolute;
+            bottom: 20rpx;
+            left: 24rpx;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            .dot {
+                flex: none;
+                width: 12rpx;
+                height: 12rpx;
+                background:rgba(255,255,255,.7);
+                border-radius: 50%;
+                margin-left: 8rpx;
+                transition: width .3s;
+                position: relative;
+                overflow: hidden;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: white;
+                    width: 0rpx;
+                    height: 12rpx;
+                }
+            }
+            .dot-active {
+                width: 28rpx;
+                height: 12rpx;
+                border-radius: 12rpx;
+                background: rgba(255, 255, 255, .8);
+                &:after {
+                    content: "";
+                    width: var(--width);
+                    transition: width var(--duration) linear;
+                }
+            }
         }
     }
-    .dot-active {
-        width: 28rpx;
-        height: 12rpx;
-        border-radius: 12rpx;
-        background: rgba(255, 255, 255, .8);
-        &:after {
-            content: "";
-            width: var(--width);
-            transition: width var(--duration) linear;
-        }
-    }
-}
 </style>

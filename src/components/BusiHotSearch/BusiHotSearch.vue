@@ -1,6 +1,6 @@
 <template>
     <view
-        class="busi-hot-search-wrapper"
+        class="busi-hot-search"
         :class="customClass ? customClass : ''"
     >
         <view
@@ -115,7 +115,7 @@
 </script>
 
 <style lang="scss">
-.busi-hot-search-wrapper {
+.busi-hot-search {
     display: flex;
     flex-wrap: wrap;
     .hot-item {

@@ -197,19 +197,18 @@
 </script>
 
 <style lang="scss">
-    .popupImg-mask{
-        position: fixed;
-        left:0;
-        top:0;
-        bottom: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.65);
-        z-index: 999999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
+.popupImg-mask{
+    position: fixed;
+    left:0;
+    top:0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     .popupImg-box{
         width: var(--img-width);
         position: relative;
@@ -256,4 +255,5 @@
         height: 100%;
         display: block;
     }
+}
 </style>
