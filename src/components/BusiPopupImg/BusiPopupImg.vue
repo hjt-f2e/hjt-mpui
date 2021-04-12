@@ -89,7 +89,7 @@
     export default {
         name: 'BusiPopupImg',
         props: {
-            // 是否展示
+            // 是否展示，支持.sync修饰符
             visible: {
                 type: Boolean,
                 default: false,

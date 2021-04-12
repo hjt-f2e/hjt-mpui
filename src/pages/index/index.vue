@@ -37,6 +37,7 @@
                 :adData="popupImg"
                 :reportSource="home"
                 @click="handleClick"
+                @update:visible="handleUpdateVisible"
             ></BusiPopupImg>
         </view>
         <view class="cmp-wrapper">
@@ -86,7 +87,10 @@ export default {
         // 广告点击回调
 		handleClick(item, index) {
 			console.log('click', item, index);
-		}
+		},
+        handleUpdateVisible(val) {
+            console.log(val);
+        }
 	},
 };
 </script>
@@ -107,5 +111,11 @@ export default {
     }
 }
 .hotSearch {
+    .icon {
+        .image {
+            width: 60rpx;
+            height: 60rpx;
+        }
+    }
 }
 </style>

@@ -38,6 +38,7 @@ packagesLists.reduce((promise, item) => {
     return promise;
 }, Promise.resolve([])).then(() => {
     console.log('全部成功');
+    // TODO:删除注释，做代码压缩等加工
     if (argv === 'npm') {
         // 如果script命令参数是:npm走上传npm方法
         console.log('----- 开始上传 npm -----');
