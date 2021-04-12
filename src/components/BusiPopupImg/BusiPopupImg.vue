@@ -2,6 +2,7 @@
     <view
         v-if="isShow"
         class="popupImg-mask"
+        :class="customClass ? customClass : ''"
         catchtouchmove="ture"
         @click.stop="handleClose"
     >
@@ -9,7 +10,8 @@
             class="popupImg-wrap"
             :style="{
                 'margin-top': `${top}rpx`,
-                '--br': `${borderRadius}rpx`
+                '--br': `${borderRadius}rpx`,
+                '--img-width': imgWidth
             }"
         >
             <view class="popupImg-box">
@@ -48,7 +50,7 @@
     /* *desc
     # 开屏弹窗广告业务组件
     
-    > 根据广告数据展示开屏弹窗广告
+    > 根据广告数据展示开屏弹窗广告，集成预加载功能，图片加载完成后才会展示开屏弹窗
 
     ## 使用方式
 
@@ -101,6 +103,16 @@
             borderRadius: {
                 type: Number,
                 default: 20,
+            },
+            // 图片的宽度，高度会根据宽度自适应
+            imgWidth: {
+                type: String,
+                default: '650rpx'
+            },
+            // 自定义样式，用于覆写内部样式
+            customClass: {
+                type: String,
+                default: '',
             },
             // 广告数据
             adData: {
@@ -184,7 +196,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .popupImg-mask{
         position: fixed;
         left:0;
@@ -192,14 +204,14 @@
         bottom: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.65);
-        z-index: 9999;
+        z-index: 999999;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
     }
     .popupImg-box{
-        width: 650rpx;
+        width: var(--img-width);
         position: relative;
         border-radius: 12rpx;
         top:0;

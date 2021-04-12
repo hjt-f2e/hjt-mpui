@@ -4,6 +4,7 @@
         <view
             v-if="adList.length > 1"
             class="banner-swiper-wrapper"
+            :class="customClass ? customClass : ''"
             :style="{height:height+'rpx'}"
         >
             <swiper
@@ -26,7 +27,7 @@
             >
                 <block
                     v-for="(item, index) in adList"
-                    :key="index"
+                    :key="item.ad_number"
                 >
                     <swiper-item
                         :id="item.ad_number"
@@ -166,6 +167,11 @@
                         list: []
                     };
                 }
+            },
+            // 自定义样式，用于覆写内部样式
+            customClass: {
+                type: String,
+                default: '',
             },
             // 高度(单位：rpx)
             height: {

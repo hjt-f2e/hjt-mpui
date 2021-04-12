@@ -46,6 +46,7 @@ export default {
 |Name|Description|Type|Required|Default|
 |---|---|---|---|---|
 |adData|广告数据|`Object`|`false`|{"config":{},"list":[]}|
+|customClass|自定义样式，用于覆写内部样式|`String`|`false`|-|
 |height|高度(单位：rpx)|`Number`|`false`|280|
 |showDot|是否显示轮播圆点|`Boolean`|`false`|true|
 |dotStyle|轮播圆点样式 ```[default, style1]```|`String`|`false`|default|

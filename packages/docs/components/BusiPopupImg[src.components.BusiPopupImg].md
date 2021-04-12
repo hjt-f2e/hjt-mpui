@@ -2,7 +2,7 @@
 
 # 开屏弹窗广告业务组件
 
-> 根据广告数据展示开屏弹窗广告
+> 根据广告数据展示开屏弹窗广告，集成预加载功能，图片加载完成后才会展示开屏弹窗
 
 ## 使用方式
 
@@ -44,6 +44,8 @@ export default {
 |visible|是否展示|`Boolean`|`false`|false|
 |top|广告图margin-top，顶部沉浸式体验时微调图片位置|`Number`|`false`|0|
 |borderRadius|图片圆角(单位：rpx)|`Number`|`false`|20|
+|imgWidth|图片的宽度，高度会根据宽度自适应|`String`|`false`|650rpx|
+|customClass|自定义样式，用于覆写内部样式|`String`|`false`|-|
 |adData|广告数据|`Object`|`false`|{"conifg":{},"list":[]}|
 |reportType|埋点上报字段ad_type|`String`|`false`|mask|
 |reportSource|埋点上报字段ad_source|`String`|`false`|-|
