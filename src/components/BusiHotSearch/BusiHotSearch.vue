@@ -21,7 +21,7 @@
                 v-if="item.image"
                 class="icon"
             >
-                <img :src="item.image">
+                <image class="image" :src="item.image">
             </view>
             <view class="text">
                 {{ item.text }}
@@ -134,7 +134,7 @@
         margin-right: 6rpx;
         display: flex;
         align-items: center;
-        img {
+        .image {
             font-size: 0;
             width: 30rpx;
             height: 30rpx;

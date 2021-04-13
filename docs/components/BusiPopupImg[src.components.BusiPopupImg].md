@@ -41,7 +41,7 @@ export default {
 <!-- @hjtvuese:BusiPopupImg:props:start -->
 |Name|Description|Type|Required|Default|
 |---|---|---|---|---|
-|visible|是否展示|`Boolean`|`false`|false|
+|visible|是否展示，支持.sync修饰符|`Boolean`|`false`|false|
 |top|广告图margin-top，顶部沉浸式体验时微调图片位置|`Number`|`false`|0|
 |borderRadius|图片圆角(单位：rpx)|`Number`|`false`|20|
 |imgWidth|图片的宽度，高度会根据宽度自适应|`String`|`false`|650rpx|

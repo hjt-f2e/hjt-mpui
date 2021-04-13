@@ -37,6 +37,7 @@
                     @click.stop="handleClick(adData.list[0])"
                 >
                     <image
+                        class="image"
                         :src="img"
                         mode="widthFix"
                     />
@@ -250,7 +251,7 @@
         z-index: 223;
         overflow: hidden;
     }
-    .popupImg-img image{
+    .popupImg-img .image{
         width: 100%;
         height: 100%;
         display: block;
