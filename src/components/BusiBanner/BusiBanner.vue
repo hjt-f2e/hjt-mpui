@@ -15,7 +15,6 @@
                 :style="{
                     height: height + 'rpx'
                 }"
-                :current="swiperCurrent"
                 :circular="swiperCircular"
                 :indicator-dots="showDot && dotStyle === 'default'"
                 autoplay="true"
@@ -215,8 +214,16 @@
         watch: {
             adData: {
                 handler(to) {
-                    this.adList = to.list;
-                    this.config = to.config;
+                    if (to.hasOwnProperty('list') && to.hasOwnProperty('config')) {
+                        this.adList = to.list;
+                        this.config = to.config;
+                        this.$nextTick(() => {
+                            this.activeDotWidth = 28;
+                        });
+                    } else {
+                        this.adList = [];
+                        this.config = {};
+                    }
                 },
                 immediate: true,
             },
@@ -229,10 +236,6 @@
                 config: this.adData.config,
                 activeDotWidth: 0,
             };
-        },
-
-        mounted() {
-            this.activeDotWidth = 28;
         },
 
         methods: {

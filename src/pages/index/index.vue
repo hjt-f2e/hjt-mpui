@@ -73,7 +73,7 @@ export default {
         return {
             title: "Hello",
             // 广告轮播数据
-            bannerData: vitualData.bannerData,
+            bannerData: {},
             // 开屏弹窗数据
             popupImg: vitualData.popupImg,
             showIndexAd: false,
@@ -81,7 +81,10 @@ export default {
             hotSearch: vitualData.hotSearch,
         };
     },
-    onLoad() {        
+    onLoad() {      
+        setTimeout(() => {
+            this.bannerData = vitualData.bannerData
+        }, 1000);  
     },
     methods: {
         // 广告点击回调
