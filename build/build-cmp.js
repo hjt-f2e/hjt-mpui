@@ -1,9 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
-const argv = process.argv.splice(2)[0]
+
+const argv = process.argv.splice(2)[0];
 const shell = require('shelljs');
 const updatePackageJson = require('./updatePackage');
 const createDocs = require('./createDocs');
+const deleteComments = require('./deleteComments');
 
 const {
     packages,
@@ -29,18 +31,23 @@ if (exists) {
 
 // 读取components文件夹，同步组件
 const packagesLists = fs.readdirSync(packages);
+// console.log(packagesLists);
 
 packagesLists.reduce((promise, item) => {
     const comPath = path.join(packages); // components文件夹
     const componentsPath = path.join(comPath, item); // 组件文件
     fs.copySync(componentsPath, path.join(targetDir, item)); // 复制到package/targetDir中
-    console.log(item + '组件同步成功');
+    const filePath = path.join(targetDir, item, `${item}.vue`);
+    deleteComments(filePath, filePath);
+    // eslint-disable-next-line no-console
+    console.log(`${item}组件同步成功`);
     return promise;
 }, Promise.resolve([])).then(() => {
+    // eslint-disable-next-line no-console
     console.log('全部成功');
-    // TODO:删除注释，做代码压缩等加工
     if (argv === 'npm') {
         // 如果script命令参数是:npm走上传npm方法
+        // eslint-disable-next-line no-console
         console.log('----- 开始上传 npm -----');
         start();
     }
@@ -49,7 +56,7 @@ packagesLists.reduce((promise, item) => {
 // 上传npm
 function start() {
     // cmd命令
-    let cmdStr = 'npm publish --access public'; // 如果项目名是以@开头，要添加参数 --access public，不然npm会认为是私包，需要你充值付费才能上传
+    const cmdStr = 'npm publish --access public'; // 如果项目名是以@开头，要添加参数 --access public，不然npm会认为是私包，需要你充值付费才能上传
     // 先进入packages文件夹
     shell.cd('packages'); // 进入packages文件夹
     shell.exec(cmdStr); // 执行发布命令

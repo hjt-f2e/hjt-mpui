@@ -48,92 +48,46 @@
 </template>
 
 <script>
-    /* *desc
-    # 开屏弹窗广告业务组件
-    
-    > 根据广告数据展示开屏弹窗广告，集成预加载功能，图片加载完成后才会展示开屏弹窗
 
-    ## 使用方式
-
-    引入
-    ```js
-    import BusiPopupImg from '@hjtui/mpui/components/BusiPopupImg/BusiPopupImg.vue';
-    export default {
-        components: {
-            BusiPopupImg,
-        },
-    }
-    ```
-
-    使用
-    ```html
-    <BusiPopupImg
-        :visible.sync="showIndexAd"
-        :adData="popupImg"
-        :reportSource="home"
-        @click="handleClick"
-    ></BusiPopupImg>
-    ```
-    ```js
-    export default {
-        methods: {
-            handleClick(item) {
-                // 跳转逻辑，支持协议跳转
-                jumpTo(item.url);
-            }
-        }
-    }
-    ```
-    */
-
-    // @group 基础业务组件
     export default {
         name: 'BusiPopupImg',
         props: {
-            // 是否展示，支持.sync修饰符
             visible: {
                 type: Boolean,
                 default: false,
             },
-            // 广告图margin-top，顶部沉浸式体验时微调图片位置
             top: {
                 type: Number,
                 default: 0,
             },
-            // 图片圆角(单位：rpx)
             borderRadius: {
                 type: Number,
                 default: 20,
             },
-            // 图片的宽度，高度会根据宽度自适应
             imgWidth: {
                 type: String,
-                default: '650rpx'
+                default: '650rpx',
             },
-            // 自定义样式，用于覆写内部样式
             customClass: {
                 type: String,
                 default: '',
             },
-            // 广告数据
             adData: {
                 type: Object,
-                default () {
+                default() {
                     return {
                         conifg: {},
                         list: [],
-                    }
-                }
+                    };
+                },
             },
-            // 埋点上报字段ad_type
             reportType: {
                 type: String,
-                default: 'mask'
+                default: 'mask',
             },
-            // 埋点上报字段ad_source
             reportSource: {
                 type: String,
-                default: ''
+                default: '',
             },
         },
         data() {
@@ -147,23 +101,21 @@
         watch: {
             visible: {
                 handler(visible) {
-                    const { list, config } = this.adData
+                    const { list, config } = this.adData;
                     if (visible && list) {
-                        // 先加载图片再显示开屏弹窗
                         uni.downloadFile({
                             url: list[0].image,
                             success: (downloadRes) => {
                                 this.img = downloadRes.tempFilePath;
                                 this.isShow = true;
-                                // 开始倒计时
                                 this.startCountDown(config.stay_duration);
-                            }
+                            },
                         });
                     } else {
                         this.isShow = false;
                     }
                 },
-            }
+            },
         },
         beforeDestroy() {
             clearInterval(this.timer);
@@ -176,25 +128,22 @@
                 this.timer = null;
             },
             handleClick(item) {
-                // 点击触发事件回调(item)
-                // @arg item: 单个广告数据
                 this.$emit('click', item);
             },
-            // 倒计时
             startCountDown(stayDuration) {
                 const countDown = Math.round(stayDuration);
                 if (countDown > 0) {
                     this.second = countDown;
                     this.timer = setInterval(() => {
-                        if (this.second == '0') {
+                        if (this.second === '0') {
                             this.handleClose();
                         }
                         this.second = `${this.second - 1}`;
                     }, 1000);
                 }
-            }
-        }
-    }
+            },
+        },
+    };
 </script>
 
 <style lang="scss">

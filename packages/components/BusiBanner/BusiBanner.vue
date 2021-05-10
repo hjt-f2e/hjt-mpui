@@ -3,7 +3,6 @@
         class="busi-banner"
         :class="customClass ? customClass : ''"
     >
-        <!-- 多张 -->
         <view
             v-if="adList.length > 1"
             class="banner-swiper-wrapper"
@@ -54,7 +53,6 @@
                     </swiper-item>
                 </block>
             </swiper>
-            <!-- 轮播指示点样式修改 -->
             <view
                 v-if="showDot && dotStyle === 'style1'"
                 class="dots"
@@ -73,7 +71,6 @@
                 />
             </view>
         </view>
-        <!-- 只有一张图片 -->
         <view
             v-else-if="adList.length === 1"
             class="banner-swiper-wrapper"
@@ -109,112 +106,72 @@
 
 <script>
     import ImageLoader from '../BaseImageLoader/BaseImageLoader.vue';
-    /* *desc
-    # 广告banner展示组件
-    
-    > banner图片展示承载组件
 
-    ## 使用方式
-
-    引入
-    ```js
-    import BusiBanner from '@hjtui/mpui/components/BusiBanner/BusiBanner.vue';
-    export default {
-        components: {
-            BusiBanner,
-        },
-    }
-    ```
-
-    使用
-    ```html
-    <view style="padding: 0 32rpx;">
-        <BusiBanner
-            reportSource="home"
-            reportType="banner"
-            :adData="adData"
-            :showDot="true"
-            dotStyle="style1"
-            @click="handleClick"
-        />
-    </view>
-    ```
-    ```js
-    export default {
-        methods: {
-            handleClick(item, index) {
-                // 跳转逻辑，支持协议跳转
-                jumpTo(item.url);
-            }
-        }
-    }
-    ```
-    */
-
-    // @group 基础业务组件
     export default {
         name: 'BusiBanner',
         components: {
-            ImageLoader
+            ImageLoader,
         },
 
         props: {
-            // 广告数据
             adData: {
                 type: Object,
                 default() {
                     return {
                         config: {},
-                        list: []
+                        list: [],
                     };
-                }
+                },
             },
-            // 自定义样式，用于覆写内部样式
             customClass: {
                 type: String,
                 default: '',
             },
-            // 高度(单位：rpx)
             height: {
                 type: Number,
-                default: 280
+                default: 280,
             },
-            // 是否显示轮播圆点
             showDot: {
                 type: Boolean,
-                default: true
+                default: true,
             },
-            // 轮播圆点样式 ```[default, style1]```
             dotStyle: {
                 type: String,
-                default: 'default'
+                default: 'default',
             },
-            // 是否首尾衔接
             swiperCircular: {
                 type: Boolean,
-                default: true
+                default: true,
             },
-            // 切换动画时长ms
             duration: {
                 type: Number,
-                default: 300
+                default: 300,
             },
-            // 埋点上报字段ad_type
             reportType: {
                 type: String,
-                default: 'banner'
+                default: 'banner',
             },
-            // 埋点上报字段ad_source
             reportSource: {
                 type: String,
-                default: ''
+                default: '',
             },
+        },
+
+        data() {
+            return {
+                swiperCurrent: 0,
+                adList: this.adData.list,
+                config: this.adData.config,
+                activeDotWidth: 0,
+            };
         },
 
         watch: {
             adData: {
                 handler(to) {
-                    if (to.hasOwnProperty('list') && to.hasOwnProperty('config')) {
+                    const hasList = Object.hasOwnProperty.call(to, 'list');
+                    const hasConfig = Object.hasOwnProperty.call(to, 'config');
+                    if (hasList && hasConfig) {
                         this.adList = to.list;
                         this.config = to.config;
                         this.$nextTick(() => {
@@ -229,38 +186,23 @@
             },
         },
 
-        data() {
-            return {
-                swiperCurrent: 0,
-                adList: this.adData.list,
-                config: this.adData.config,
-                activeDotWidth: 0,
-            };
-        },
-
         methods: {
             handleClick(item, index) {
                 if (!item.url.includes('navigateTo://none')) {
-                    // 点击触发事件回调(item, index)
-                    // @arg item: 单个广告数据;
-                    // @arg index: banner index位置;
                     this.$emit('click', item, index);
                 }
             },
-            // 滑动的问题
             changeSwiper(e) {
                 const { current } = e.detail;
                 this.swiperCurrent = current;
             },
-            // 动画结束
             animationfinish() {
                 this.activeDotWidth = 28;
             },
-            // 左右划触发
-            transitionSwiper(e) {
+            transitionSwiper() {
                 this.activeDotWidth = 0;
-            }
-        }
+            },
+        },
     };
 </script>
 

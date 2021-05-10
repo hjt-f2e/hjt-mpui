@@ -28,7 +28,7 @@
             />
         </view>
         <view class="progress-title">
-            {{title}}
+            {{ title }}
         </view>
         <view class="progress-value">
             {{ value }}
@@ -37,84 +37,46 @@
 </template>
 
 <script>
-    /* *desc
-    # 圆形波浪进度基础组件
-    
-    > 带有波浪动画的圆形容器波浪组件
 
-    ![](https://imgcdn.huanjutang.com/file/2021/03/25/120d8001aa32b6dc4798e3b55ad24007.png)
-
-    ## 使用方式
-    ```javascript
-    import BaseCircleProgress from '@hjtui/mpui/components/BaseCircleProgress/BaseCircleProgress.vue';
-    export default {
-        components: {
-            BaseCircleProgress
-        }
-    };
-    ```
-    ```html
-    <BaseCircleProgress
-        title="标题"
-        :value="201"
-        :max="300"
-        valueColor="#ccc"
-        waveColor="#FFD34A"
-        titleColor="#666"
-        size="150rpx"
-        bgColor="#efefef"
-    />
-    ```
-     */
-
-    // @group 基础UI组件
     export default {
         name: 'BaseCircleProgress',
         props: {
-            // 标题
             title: {
                 type: String,
-                default: '标题'
+                default: '标题',
             },
-            // 当前值
             value: {
                 type: Number,
-                default: 0
+                default: 0,
             },
-            // 最大值
             max: {
                 type: Number,
-                default: 300
+                default: 300,
             },
-            // 值-颜色
             valueColor: {
                 type: String,
                 default: '#ccc',
             },
-            // 标题-颜色
             titleColor: {
                 type: String,
                 default: '#666',
             },
-            // 波浪-颜色
             waveColor: {
                 type: String,
                 default: '#FFD34A',
             },
-            // 容器背景-颜色
             bgColor: {
                 type: String,
                 default: '#efefef',
             },
-            // 大小
             size: {
                 type: String,
-                default: '150rpx'
-            }
+                default: '150rpx',
+            },
         },
         data() {
             return {
-                percentage: '100%'
+                percentage: '100%',
             };
         },
         watch: {
@@ -123,18 +85,20 @@
                     if (to >= this.max) {
                         this.percentage = '0%';
                     } else {
-                        this.percentage = `${((this.max - to) / this.max) * 100 < 0 ? 0 : ((this.max - to) / this.max) * 100}%`;
+                        const percentageValue = ((this.max - to) / this.max);
+                        this.percentage = `${percentageValue * 100 < 0 ? 0 : percentageValue * 100}%`;
                     }
                 } else {
                     this.percentage = '0%';
                 }
-            }
+            },
         },
         mounted() {
-            this.percentage = `${((this.max - this.value) / this.max) * 100 < 0 ? 0 : ((this.max - this.value) / this.max) * 100}%`;
+            const percentageValue = ((this.max - this.value) / this.max);
+            this.percentage = `${percentageValue * 100 < 0 ? 0 : percentageValue * 100}%`;
         },
         methods: {
-        }
+        },
     };
 </script>
 
@@ -162,14 +126,12 @@ $length: var(--size);
         width: $length;
         height: $length;
         position: relative;
-        // border: 1rpx solid #ccc;
         top: 100%;
         border-radius: 50%;
         overflow: hidden;
         box-sizing: border-box;
         backface-visibility: hidden;
         transform: translate3d(0, 0, 0);
-        // background: white;
     }
     .wave1 {
         left: -25%;
