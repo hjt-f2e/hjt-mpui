@@ -217,6 +217,8 @@
             .swiper {
                 height: 280rpx;
                 border-radius: 8rpx;
+                overflow:hidden;
+                transform: translateY(0);
             }
             .swiperItem {
                 position: relative;
