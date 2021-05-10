@@ -4,9 +4,9 @@
         :class="customClass ? customClass : ''"
     >
         <view
-            class="hot-item"
             v-for="(item, index) in adData.list"
             :key="item.ad_number"
+            class="hot-item"
             data-custom-event-name="AD_click"
             data-custom-prop-ad_medium="小程序"
             :data-custom-prop-ad_type="reportType"
@@ -17,11 +17,14 @@
             :data-custom-prop-ad_keyword="item.project_name"
             @click="handleClick(item, index)"
         >
-            <view 
+            <view
                 v-if="item.image"
                 class="icon"
             >
-                <image class="image" :src="item.image">
+                <image
+                    class="image"
+                    :src="item.image"
+                />
             </view>
             <view class="text">
                 {{ item.text }}
@@ -33,7 +36,7 @@
 <script>
     /* *desc
     # 热搜词广告业务组件
-    
+
     > 一般用于搜索框下部，展示热搜词广告
 
     ![](https://imgcdn.huanjutang.com/file/2021/04/12/06425bcf384ab51c9e2d874169348e3d.png)
@@ -80,12 +83,12 @@
             // 广告数据
             adData: {
                 type: Object,
-                default () {
+                default() {
                     return {
                         conifg: {},
                         list: [],
-                    }
-                }
+                    };
+                },
             },
             // 自定义样式，用于覆写内部样式
             customClass: {
@@ -95,12 +98,12 @@
             // 埋点上报字段ad_type
             reportType: {
                 type: String,
-                default: 'hotwords'
+                default: 'hotwords',
             },
             // 埋点上报字段ad_source
             reportSource: {
                 type: String,
-                default: ''
+                default: '',
             },
         },
         methods: {
@@ -110,7 +113,7 @@
                 // @arg index: 广告 index位置;
                 this.$emit('click', item, index);
             },
-        }
+        },
     };
 </script>
 

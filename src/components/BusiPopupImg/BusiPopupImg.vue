@@ -50,7 +50,7 @@
 <script>
     /* *desc
     # 开屏弹窗广告业务组件
-    
+
     > 根据广告数据展示开屏弹窗广告，集成预加载功能，图片加载完成后才会展示开屏弹窗
 
     ## 使用方式
@@ -108,7 +108,7 @@
             // 图片的宽度，高度会根据宽度自适应
             imgWidth: {
                 type: String,
-                default: '650rpx'
+                default: '650rpx',
             },
             // 自定义样式，用于覆写内部样式
             customClass: {
@@ -118,22 +118,22 @@
             // 广告数据
             adData: {
                 type: Object,
-                default () {
+                default() {
                     return {
                         conifg: {},
                         list: [],
-                    }
-                }
+                    };
+                },
             },
             // 埋点上报字段ad_type
             reportType: {
                 type: String,
-                default: 'mask'
+                default: 'mask',
             },
             // 埋点上报字段ad_source
             reportSource: {
                 type: String,
-                default: ''
+                default: '',
             },
         },
         data() {
@@ -147,7 +147,7 @@
         watch: {
             visible: {
                 handler(visible) {
-                    const { list, config } = this.adData
+                    const { list, config } = this.adData;
                     if (visible && list) {
                         // 先加载图片再显示开屏弹窗
                         uni.downloadFile({
@@ -157,13 +157,13 @@
                                 this.isShow = true;
                                 // 开始倒计时
                                 this.startCountDown(config.stay_duration);
-                            }
+                            },
                         });
                     } else {
                         this.isShow = false;
                     }
                 },
-            }
+            },
         },
         beforeDestroy() {
             clearInterval(this.timer);
@@ -186,15 +186,15 @@
                 if (countDown > 0) {
                     this.second = countDown;
                     this.timer = setInterval(() => {
-                        if (this.second == '0') {
+                        if (this.second === '0') {
                             this.handleClose();
                         }
                         this.second = `${this.second - 1}`;
                     }, 1000);
                 }
-            }
-        }
-    }
+            },
+        },
+    };
 </script>
 
 <style lang="scss">

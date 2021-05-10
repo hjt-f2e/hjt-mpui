@@ -111,7 +111,7 @@
     import ImageLoader from '../BaseImageLoader/BaseImageLoader.vue';
     /* *desc
     # 广告banner展示组件
-    
+
     > banner图片展示承载组件
 
     ## 使用方式
@@ -155,7 +155,7 @@
     export default {
         name: 'BusiBanner',
         components: {
-            ImageLoader
+            ImageLoader,
         },
 
         props: {
@@ -165,9 +165,9 @@
                 default() {
                     return {
                         config: {},
-                        list: []
+                        list: [],
                     };
-                }
+                },
             },
             // 自定义样式，用于覆写内部样式
             customClass: {
@@ -177,44 +177,55 @@
             // 高度(单位：rpx)
             height: {
                 type: Number,
-                default: 280
+                default: 280,
             },
             // 是否显示轮播圆点
             showDot: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             // 轮播圆点样式 ```[default, style1]```
             dotStyle: {
                 type: String,
-                default: 'default'
+                default: 'default',
             },
             // 是否首尾衔接
             swiperCircular: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             // 切换动画时长ms
             duration: {
                 type: Number,
-                default: 300
+                default: 300,
             },
             // 埋点上报字段ad_type
             reportType: {
                 type: String,
-                default: 'banner'
+                default: 'banner',
             },
             // 埋点上报字段ad_source
             reportSource: {
                 type: String,
-                default: ''
+                default: '',
             },
+        },
+
+        data() {
+            return {
+                swiperCurrent: 0,
+                adList: this.adData.list,
+                config: this.adData.config,
+                activeDotWidth: 0,
+            };
         },
 
         watch: {
             adData: {
                 handler(to) {
-                    if (to.hasOwnProperty('list') && to.hasOwnProperty('config')) {
+                    const hasList = Object.hasOwnProperty.call(to, 'list');
+                    const hasConfig = Object.hasOwnProperty.call(to, 'config');
+                    if (hasList && hasConfig) {
                         this.adList = to.list;
                         this.config = to.config;
                         this.$nextTick(() => {
@@ -227,15 +238,6 @@
                 },
                 immediate: true,
             },
-        },
-
-        data() {
-            return {
-                swiperCurrent: 0,
-                adList: this.adData.list,
-                config: this.adData.config,
-                activeDotWidth: 0,
-            };
         },
 
         methods: {
@@ -257,10 +259,10 @@
                 this.activeDotWidth = 28;
             },
             // 左右划触发
-            transitionSwiper(e) {
+            transitionSwiper() {
                 this.activeDotWidth = 0;
-            }
-        }
+            },
+        },
     };
 </script>
 

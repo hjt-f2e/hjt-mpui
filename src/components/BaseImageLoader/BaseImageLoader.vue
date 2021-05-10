@@ -58,36 +58,36 @@
                 type: String,
                 default() {
                     return '';
-                }
+                },
             },
             // 资源样式
             styles: {
                 type: Object,
                 default() {
                     return {};
-                }
+                },
             },
             // 图片加载模式
             mode: {
                 type: String,
                 default() {
                     return 'aspectFill';
-                }
+                },
             },
             // 默认占位图
             defaultImage: {
                 type: String,
                 default() {
                     return 'https://imgcdn.huanjutang.com/assets/img/20212231125168081.jpeg';
-                }
+                },
             },
             // 加载资源时距离屏幕的高度（最好是资源高度的一倍及以上）
             distance: {
                 type: Number,
                 default() {
                     return 0;
-                }
-            }
+                },
+            },
         },
 
         data() {
@@ -100,7 +100,7 @@
                 // 图片是否已经加载
                 loaded: false,
                 // 是否出现在可视范围
-                ratio: 0
+                ratio: 0,
             };
         },
 
@@ -108,11 +108,11 @@
             // 把styleObject转换为字符串
             baseStyle() {
                 let result = '';
-                Object.keys(this.styles || {}).forEach(key => {
+                Object.keys(this.styles || {}).forEach((key) => {
                     result += `${key}: ${this.styles[key]};`;
                 });
                 return result;
-            }
+            },
         },
 
         mounted() {
@@ -145,7 +145,7 @@
             // 监测节点，只要出现在屏幕就断开观察
             setObserver() {
                 this.observer = this.createIntersectionObserver();
-                this.observer.relativeToViewport({ bottom: this.distance }).observe('.loader', res => {
+                this.observer.relativeToViewport({ bottom: this.distance }).observe('.loader', (res) => {
                     if (res.intersectionRatio > 0) {
                         this.ratio = 1;
                         this.disconnectObserver();
@@ -158,8 +158,8 @@
                     this.observer.disconnect();
                     this.observer = null;
                 }
-            }
-        }
+            },
+        },
     };
 </script>
 
