@@ -32,6 +32,7 @@
                     <swiper-item
                         :id="item.ad_number"
                         class="swiperItem"
+                        :data-content="item.ad_nike_name"
                         data-custom-event-name="AD_click"
                         data-custom-prop-ad_medium="小程序"
                         :data-custom-prop-ad_type="reportType"
@@ -83,6 +84,7 @@
                 <view
                     :id="adList[0].ad_number"
                     class="top-banner-image"
+                    :data-content="item.ad_nike_name"
                     data-custom-event-name="AD_click"
                     data-custom-prop-ad_medium="小程序"
                     :data-custom-prop-ad_type="reportType"
